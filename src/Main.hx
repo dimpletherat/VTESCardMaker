@@ -1,5 +1,8 @@
 package;
 
+import feathers.data.ListViewItemState;
+import feathers.controls.dataRenderers.ItemRenderer;
+import feathers.utils.DisplayObjectRecycler;
 import format.SVG;
 import feathers.layout.RelativePosition;
 import feathers.controls.TextCallout;
@@ -122,6 +125,64 @@ class Main extends Sprite
         _cbClan.dataProvider = dataprovider;
 
 		_cbClan.addEventListener( Event.CHANGE, comboBox_changeHandler);
+
+
+		var lv:ListView = new ListView();
+		//ItemRenderer
+
+
+		var toto = function (item:DisciplineListItemRenderer, state:ListViewItemState):Void
+    	{
+        	trace("update" , item);
+			 if ( item._icon != null )
+			{
+				item.removeChild( item._icon );            
+				item._icon = null;
+			}
+			var disc:Discipline = cast( state.data, Discipline );
+			item._icon = new DisciplineIcon( disc, 30,30);
+			item.addChild( item._icon);
+			//item.addChild( _icon );
+			//item._label.text = disc.label;
+    	}
+
+
+		lv.itemRendererRecycler = DisplayObjectRecycler.withClass( DisciplineListItemRenderer,toto);
+
+
+
+		lv.itemToText = function( data:Dynamic ):String{
+			return data.label;
+		}
+
+        lv.x = 400;
+        lv.y = 120;
+		var dataDisc:ArrayCollection<Discipline> = new ArrayCollection<Discipline>();
+		dataDisc.add( new Discipline(DisciplineName.PROTEAN));
+		dataDisc.add( new Discipline(DisciplineName.PROTEAN_SUP));
+		dataDisc.add( new Discipline(DisciplineName.THAUMATURGY));
+		dataDisc.add( new Discipline(DisciplineName.THAUMATURGY_SUP));
+		dataDisc.add( new Discipline(DisciplineName.FORTITUDE));
+		dataDisc.add( new Discipline(DisciplineName.FORTITUDE_SUP));
+		dataDisc.add( new Discipline(DisciplineName.AUSPEX));
+		dataDisc.add( new Discipline(DisciplineName.AUSPEX_SUP));
+		dataDisc.add( new Discipline(DisciplineName.OBFUSCATE));
+		dataDisc.add( new Discipline(DisciplineName.OBFUSCATE_SUP));
+		dataDisc.add( new Discipline(DisciplineName.CELERITY));
+		dataDisc.add( new Discipline(DisciplineName.CELERITY_SUP));
+		dataDisc.add( new Discipline(DisciplineName.POTENCE));
+		dataDisc.add( new Discipline(DisciplineName.POTENCE_SUP));
+		dataDisc.add( new Discipline(DisciplineName.DOMINATE));
+		dataDisc.add( new Discipline(DisciplineName.DOMINATE_SUP));
+		dataDisc.add( new Discipline(DisciplineName.PRESENCE));
+		dataDisc.add( new Discipline(DisciplineName.PRESENCE_SUP));
+		dataDisc.add( new Discipline(DisciplineName.ANIMALISM));
+		dataDisc.add( new Discipline(DisciplineName.ANIMALISM_SUP));
+		lv.dataProvider = dataDisc;
+		addChild( lv );
+
+
+
 
 		var d = addChild( new DisciplineIcon(new Discipline(DisciplineName.PROTEAN_SUP), 200,200));
 	d.x = 200;
