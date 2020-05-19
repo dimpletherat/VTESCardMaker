@@ -17,23 +17,35 @@ class DisciplineIcon extends Sprite {
 
 
 
-    public function new( discipline:Discipline, ?width:Int = -1, ?height:Int = -1 )
+    public function new( ?discipline:Discipline = null, ?width:Int = -1, ?height:Int = -1 )
     {
         super();
-        if ( width > -1 )
-            _desiredWidth = width ;
+         _desiredWidth = width ;
+         _desiredHeight = height;
 
-        if ( height > -1 )
-            _desiredHeight = height;
-        _svg = new SVG( Assets.getText( "icons/" + discipline.iconFileName));
-        
-        addEventListener( Event.ADDED_TO_STAGE, _addedToStageHandler );
-        trace( _desiredHeight );
-        trace( _desiredWidth );
-
+        if ( discipline != null )
+        {
+            addEventListener( Event.ADDED_TO_STAGE, _addedToStageHandler );
+            display( discipline, _desiredWidth, _desiredHeight);
+        }
     }
 
-    private function _addedToStageHandler( e:Event) {
+    private function _addedToStageHandler( e:Event)
+    {
+    }
+
+    public function display(discipline:Discipline = null, ?width:Int = -1, ?height:Int = -1 )
+    {
+        graphics.clear();
+        
+        if ( discipline == null )
+        {
+            return;
+        }
+        _desiredWidth = width ;
+        _desiredHeight = height;
+        
+        _svg = new SVG( Assets.getText( "icons/" + discipline.iconFileName));
         _svg.render( graphics, 0,0, _desiredWidth, _desiredHeight );
     }
 }
