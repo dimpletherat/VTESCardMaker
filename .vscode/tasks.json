@@ -1,0 +1,34 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "lime",
+			"command": "test",
+			"targetConfiguration": "HashLink",
+			"problemMatcher": [
+				"$haxe-absolute",
+				"$haxe",
+				"$haxe-error",
+				"$haxe-trace"
+			],
+			"label": "lime: test hl",
+			"group": "build"
+		},
+		{
+			"type": "lime",
+			"command": "test",
+			"targetConfiguration": "Neko",
+			"problemMatcher": [
+				"$haxe-absolute",
+				"$haxe",
+				"$haxe-error",
+				"$haxe-trace"
+			],
+			"label": "lime: test neko",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

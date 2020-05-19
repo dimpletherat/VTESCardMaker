@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="VTESCardMaker" package="com.nbigot.vtescardmaker" version="1.0.0" company="Sewers Studio" />
+	<app main="Main" path="bin" file="VTESCardMaker" />
+	
+	<window background="#cccccc" fps="60" />
+	<window width="600" height="800" unless="mobile" />
+	<window orientation="portrait" vsync="false" antialiasing="0" if="cpp" />
+	
+	<source path="src" />
+	
+	<haxelib name="openfl" />
+    <haxelib name="actuate" />
+    <haxelib name="svg" />
+	
+	<assets path="assets/images" rename="images" />
+	<assets path="assets/fonts" rename="fonts" />
+	<assets path="assets/icons" rename="icons" />
+	
+	
+	<!-- optimize output
+	<haxeflag name="-dce full" /> -->
+</project>

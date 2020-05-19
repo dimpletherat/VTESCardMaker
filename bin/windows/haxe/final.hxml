@@ -1,0 +1,32 @@
+-main ApplicationMain 
+--macro openfl._internal.macros.ExtraParams.include()
+-cp D:/Prod/Haxe/_HaxeToolkit/haxe/lib/openfl/8,9,6/src
+-D openfl=8.9.6
+--macro lime._internal.macros.DefineMacro.run()
+-cp D:/Prod/Haxe/_HaxeToolkit/haxe/lib/lime/7,7,0/src
+-D lime=7.7.0
+-cp D:/Prod/Haxe/_HaxeToolkit/haxe/lib/actuate/1,8,9/src
+-D actuate=1.8.9
+-cp src
+-D AIR_SDK=D:\StandaloneApps\FlashDevelop-5.3.3\Apps\flexairsdk\4.6.0+32.0.0
+-D lime-harfbuzz
+-D lime-openal
+-D tools=7.7.0
+-D lime-cairo
+-D lime-opengl
+-D no-compilation
+-D native
+-D lime-curl
+-D lime-native
+-D lime-vorbis
+-D openfl-native
+-D lime-cffi
+-D windows
+-D desktop
+--remap flash:openfl
+--connect
+6000
+-cp bin/windows/haxe
+-cpp bin/windows/obj
+--macro keep("Main")
+-D final
