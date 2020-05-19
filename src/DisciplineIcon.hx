@@ -35,8 +35,5 @@ class DisciplineIcon extends Sprite {
 
     private function _addedToStageHandler( e:Event) {
         _svg.render( graphics, 0,0, _desiredWidth, _desiredHeight );
-        //_svg.render( graphics);
-        //width = _desiredWidth;        
-       // height = _desiredHeight;
     }
 }

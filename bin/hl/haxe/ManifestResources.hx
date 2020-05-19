@@ -123,10 +123,31 @@ null
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__fonts_matrixliningregular_ttf extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__fonts_matrixregular_ttf extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__fonts_quorbl___ttf extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_ani_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_ani_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_aus_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_aus_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_cel_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_cel_svg extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_clansymbols_zip extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_disciplines_ai extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_disciplines2_ai extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_disciplines2_ai_2020_05_18_20_43_09_0_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_dom_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_dom_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_for_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_for_svg extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_logo_rtt_final_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_obf_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_obf_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_pot_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_pot_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_pre_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_pre_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_pro_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_pro_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_tha_sup_svg extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__icons_tha_svg extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__manifest_default_json extends null { }
 
 

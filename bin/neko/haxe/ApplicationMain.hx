@@ -32,7 +32,7 @@ class ApplicationMain
 
 		ManifestResources.init(config);
 
-		app.meta["build"] = "145";
+		app.meta["build"] = "150";
 		app.meta["company"] = "Sewers Studio";
 		app.meta["file"] = "VTESCardMaker";
 		app.meta["name"] = "VTESCardMaker";

@@ -12,6 +12,7 @@
 	
 	<haxelib name="openfl" />
     <haxelib name="actuate" />
+	<haxelib name="feathersui" />
     <haxelib name="svg" />
 	
 	<assets path="assets/images" rename="images" />

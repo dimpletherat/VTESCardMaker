@@ -7,6 +7,8 @@
 -D lime=7.7.0
 -cp D:/Prod/Haxe/_HaxeToolkit/haxe/lib/actuate/1,8,9/src
 -D actuate=1.8.9
+-cp D:/Prod/Haxe/_HaxeToolkit/haxe/lib/feathersui/master/src
+-D feathersui=1.0.0-alpha.2
 -cp D:/Prod/Haxe/_HaxeToolkit/haxe/lib/svg/1,1,3
 -D svg=1.1.3
 -cp src
