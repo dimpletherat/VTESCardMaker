@@ -146,8 +146,12 @@ class Main extends Sprite
 			//item._label.text = disc.label;
     	}
 
+		//lv.itemRendererRecycler = DisplayObjectRecycler.withClass( DisciplineListItemRenderer,toto);
 
-		lv.itemRendererRecycler = DisplayObjectRecycler.withClass( DisciplineListItemRenderer,toto);
+
+		var itemRecycler = DisplayObjectRecycler.withClass( DisciplineListItemRenderer, DisciplineListItemRenderer.update, DisciplineListItemRenderer.reset, DisciplineListItemRenderer.destroy );
+		lv.itemRendererRecycler = itemRecycler;
+
 
 
 
