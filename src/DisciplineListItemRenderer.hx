@@ -22,66 +22,50 @@ class DisciplineListItemRenderer extends Sprite
     {
         super();
 
-        trace("create", this);
-        _icon = null;
-        _label = new Label();
 
-       /* var lg:LayoutGroup = new LayoutGroup();
+        //var lg:LayoutGroup = new LayoutGroup();
+        _icon = new DisciplineIcon();
+        _label = new Label();
+        _label.x = 30;
+/*
         var hl:HorizontalLayout = new HorizontalLayout();
         lg.layout = hl;
+        lg.addChild( _icon );
         lg.addChild( _label );
         addChild( lg );*/
-
-
+        addChild( _icon);
         addChild( _label);
+        trace("create", this, width);
     }    
-/*
-    public function create():LayoutGroup
+    
+
+
+
+
+    public static function update(item:DisciplineListItemRenderer, state:ListViewItemState):Void
     {
-        _icon = null;
-        _label = new Label();
+        var d:Discipline = cast( state.data, Discipline );
+        trace("update", d.label, item.width);
+        item._icon.display( d, 30,30);
+        item._label.text = d.label;
 
-        var lg:LayoutGroup = new LayoutGroup();
-        var hl:HorizontalLayout = new HorizontalLayout();
-        lg.layout = hl;
-        lg.addChild( _label );
+        trace("update", d.label, item.width);
+    };
 
-        return lg;
-    }
-  */
-
-    public function update (item:DisciplineListItemRenderer, state:ListViewItemState):Void
+    public static function reset (item:DisciplineListItemRenderer, state:ListViewItemState):Void
     {
-        trace("update" , item);
-        if ( _icon != null )
-        {
-            item.removeChild( _icon );            
-            _icon = null;
-        }
-        var disc:Discipline = cast( state.data, Discipline );
-        _icon = new DisciplineIcon( disc, 30,30);
-        //item.addChild( _icon );
-        _label.text = disc.label;
+        var d:Discipline = cast( state.data, Discipline );
+        item._icon.display(null);
+        item._label.text = "";
+
+        trace("reset", d.label, item.width);
     }
 
-      
-
-    public function reset (item:DisciplineListItemRenderer, state:ListViewItemState):Void
+    public static function destroy(item:DisciplineListItemRenderer):Void 
     {
-        trace("reset");
-        if ( _icon != null )
-        {
-            item.removeChild( _icon );
-            _icon = null;
-        }
-        //_label.text = "";
+        item.removeChild( item._icon);
+        item.removeChild( item._label);
     }
 
-      /*
 
-    public function destroy(item:LayoutGroup):Void
-    {
-
-    }
-*/
 }
