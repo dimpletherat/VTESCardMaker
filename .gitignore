@@ -1,4 +1,3 @@
 bin/
-*.psd
+*.psd*
 *.zip
-*.psd
