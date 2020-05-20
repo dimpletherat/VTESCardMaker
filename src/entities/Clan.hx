@@ -16,7 +16,8 @@ class Clan {
         switch (name)
         {
             case ClanName.BRUJAH:
-                label = "Brujah";
+                //label = "Brujah";
+                label = "tmp";
             case ClanName.GANGREL:
                 label = "Gangrel";
             case ClanName.MALKAVIAN:
