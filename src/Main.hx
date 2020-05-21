@@ -1,5 +1,8 @@
 package;
 
+import openfl.net.FileFilter;
+import openfl.net.FileReference;
+import openfl.display.Loader;
 import feathers.events.TriggerEvent;
 import openfl.events.TextEvent;
 import feathers.controls.ScrollContainer;
@@ -26,6 +29,7 @@ import openfl.text.AntiAliasType;
 import feathers.controls.Button;
 import openfl.text.Font;
 import openfl.display.Bitmap;
+import openfl.display.BitmapData;
 import openfl.utils.Assets;
 import openfl.events.Event;
 import openfl.display.Sprite;
@@ -243,6 +247,55 @@ class Main extends Application
 
 		editCardLayoutGroup.addChild( lg4);
 
+
+
+
+
+		//illustration
+
+		var lg5:LayoutGroup = new LayoutGroup();
+		lg5.layout = hl;
+
+		var lbl5:Label = new Label();
+		lbl5.textFormat = _mainTextFormatBold;
+		lbl5.text = "Illustration";
+		lg5.addChild( lbl5);
+
+		var bt:Button = new Button();
+		bt.addEventListener( TriggerEvent.TRIGGER, _loadIllustrationClickHandler );
+		bt.text = "Load From Disk";
+		lg5.addChild( bt );
+
+
+
+		editCardLayoutGroup.addChild( lg5);
+
+	}
+	private function _loadIllustrationClickHandler(e:TriggerEvent):Void
+	{
+		var fr = new FileReference();
+		fr.addEventListener( Event.SELECT, _selectFileHandler);
+		fr.browse([new FileFilter("Compatible Images", "*.png"), new FileFilter("Compatible Images", "*.jpg")]);
+		//var l:Loader = new Loader();
+		//l.load( File)
+
+	}
+	private function _selectFileHandler(e:Event):Void
+	{
+		var fr = cast(e.target, FileReference);
+		var ext:String = fr.name.substr( fr.name.lastIndexOf("."));
+		trace( ext);
+		if ( ext != ".png" && ext != ".jpg" ) return;
+		fr.addEventListener( Event.COMPLETE, _loadFileHandler );
+		fr.load();
+	}
+	private function _loadFileHandler(e:Event):Void
+	{
+		var fr = cast(e.target, FileReference);
+		var bd:BitmapData = BitmapData.fromBytes( fr.data);
+		trace( bd);
+		_card.illustration = bd;
+		trace( bd );
 	}
 
 	private function _displayAvailableDisciplineList():Void
