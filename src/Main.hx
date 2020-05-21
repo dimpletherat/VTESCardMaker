@@ -1,9 +1,13 @@
 package;
 
+import feathers.events.TriggerEvent;
+import openfl.events.TextEvent;
+import feathers.controls.ScrollContainer;
 import feathers.controls.Label;
 import feathers.layout.VerticalLayout;
 import feathers.layout.VerticalAlign;
 import feathers.layout.HorizontalLayout;
+import feathers.layout.HorizontalAlign;
 import feathers.controls.Application;
 import feathers.controls.LayoutGroup;
 import feathers.data.ListViewItemState;
@@ -37,10 +41,15 @@ class Main extends Application
 	private var _cbClan:ComboBox;
 	private var _txtCardName:TextInput;
 	private var _txtCardCapacity:TextInput;
-	private var _listDisciplineAvailable:ListView;
-	private var _acDisciplineAvailable:ArrayCollection<Discipline>;
-	private var _listDisciplineSelected:ListView;
-	private var _acDisciplineSelected:ArrayCollection<Discipline>;
+	//private var _listDisciplineAvailable:ListView;
+	private var _scAvailableDisciplineList:ScrollContainer;
+	private var _availableDisciplineList:ArrayCollection<Discipline>;
+	//private var _listDisciplineSelected:ListView;
+	private var _scSelectedDisciplineList:ScrollContainer;
+	private var _selectedDisciplineList:ArrayCollection<Discipline>;
+	private var _mainFontName:String;
+	private var _mainTextFormat:TextFormat;
+	private var _mainTextFormatBold:TextFormat;
 
 
 	public function new()
@@ -54,16 +63,16 @@ class Main extends Application
 		l.paddingBottom = 20;		
 		layout = l;
 
+		_mainFontName = "_sans";
+		_mainTextFormat = new TextFormat( _mainFontName, 16, 0x000000, false );
+		_mainTextFormatBold = new TextFormat( _mainFontName, 16, 0x660000, true );
+
 		addEventListener( Event.ADDED_TO_STAGE, _addedToStageHandler);
 	}
 
 
 	private function _addedToStageHandler( e:Event ):Void
 	{
-		var tf:TextFormat = new TextFormat( "_sans", 16, 0x000000, false );
-		var tfBold:TextFormat = new TextFormat( "_sans", 16, 0x000000, true );
-
-
 		_card = new Card();
 		_card.clan = new Clan( ClanName.BRUJAH);
 		addChild( _card);
@@ -85,7 +94,7 @@ class Main extends Application
 		var lg1:LayoutGroup = new LayoutGroup();
 		lg1.layout = hl;
 		var lbl1:Label = new Label();
-		lbl1.textFormat = tfBold;
+		lbl1.textFormat = _mainTextFormatBold;
 		lbl1.text = "Clan";
 		lg1.addChild( lbl1);
 		
@@ -130,17 +139,13 @@ class Main extends Application
 		var lg2:LayoutGroup = new LayoutGroup();
 		lg2.layout = hl;
 		var lbl2:Label = new Label();
-		lbl2.textFormat = tfBold;
+		lbl2.textFormat = _mainTextFormatBold;
 		lbl2.text = "Name";
 		lg2.addChild( lbl2);
 
         _txtCardName = new TextInput();
-		//_txtCardName.embedFonts = true;
-		_txtCardName.textFormat = tf;
+		_txtCardName.textFormat = _mainTextFormat;
 		_txtCardName.width = 200;
-		//_txtCardName.height = 30;
-        //_txtCardName.x = 400;
-        //_txtCardName.y = 20;
 		_txtCardName.addEventListener( Event.CHANGE, _txtChangeHandler);
         lg2.addChild( _txtCardName );
 		editCardLayoutGroup.addChild( lg2);
@@ -150,16 +155,17 @@ class Main extends Application
 		var lg3:LayoutGroup = new LayoutGroup();
 		lg3.layout = hl;
 		var lbl3:Label = new Label();
-		lbl3.textFormat = tfBold;
+		lbl3.textFormat = _mainTextFormatBold;
 		lbl3.text = "Capacity";
 		lg3.addChild( lbl3);
 
         _txtCardCapacity = new TextInput();
 		//_txtCardName.embedFonts = true;
-		_txtCardCapacity.textFormat = tf;
+		_txtCardCapacity.textFormat = _mainTextFormat;
 		_txtCardCapacity.restrict = "0-9";
-		_txtCardCapacity.width = 400;
+		_txtCardCapacity.width = 40;
 		_txtCardCapacity.addEventListener( Event.CHANGE, _txtChangeHandler);
+		_txtCardCapacity.addEventListener( TextEvent.TEXT_INPUT, _txtInputChangeHandler);
         lg3.addChild( _txtCardCapacity );
 		editCardLayoutGroup.addChild( lg3);
 
@@ -167,68 +173,110 @@ class Main extends Application
 
 		//disciplines
 		var lbl4:Label = new Label();
-		lbl4.textFormat = tfBold;
+		lbl4.textFormat = _mainTextFormatBold;
 		lbl4.text = "Disciplines";
 		editCardLayoutGroup.addChild( lbl4);
 
 
+		_availableDisciplineList = new ArrayCollection<Discipline>();
+		_availableDisciplineList.add( new Discipline(DisciplineName.ANIMALISM));
+		_availableDisciplineList.add( new Discipline(DisciplineName.ANIMALISM_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.AUSPEX));
+		_availableDisciplineList.add( new Discipline(DisciplineName.AUSPEX_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.CELERITY));
+		_availableDisciplineList.add( new Discipline(DisciplineName.CELERITY_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.DOMINATE));
+		_availableDisciplineList.add( new Discipline(DisciplineName.DOMINATE_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.FORTITUDE));
+		_availableDisciplineList.add( new Discipline(DisciplineName.FORTITUDE_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.OBFUSCATE));
+		_availableDisciplineList.add( new Discipline(DisciplineName.OBFUSCATE_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.POTENCE));
+		_availableDisciplineList.add( new Discipline(DisciplineName.POTENCE_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.PRESENCE));
+		_availableDisciplineList.add( new Discipline(DisciplineName.PRESENCE_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.PROTEAN));
+		_availableDisciplineList.add( new Discipline(DisciplineName.PROTEAN_SUP));
+		_availableDisciplineList.add( new Discipline(DisciplineName.THAUMATURGY));
+		_availableDisciplineList.add( new Discipline(DisciplineName.THAUMATURGY_SUP));	
+        _availableDisciplineList.sortCompareFunction = function(a:Discipline,b:Discipline)
+        {
+            if ( a.label > b.label ) return 1;
+            if ( a.label < b.label ) return -1;
+            return 0;
+        }
+
+
+
+		_selectedDisciplineList = new ArrayCollection<Discipline>();		
+        _selectedDisciplineList.sortCompareFunction = function(a:Discipline,b:Discipline)
+        {
+            if ( a.isSuperior && !b.isSuperior) return 1;
+            if ( !a.isSuperior && b.isSuperior ) return -1;
+            if ( a.label > b.label ) return 1;
+            if ( a.label < b.label ) return -1;
+            return 0;
+        }
 
 		var lg4:LayoutGroup = new LayoutGroup();
 		lg4.layout = hl;		
 
-		var itemRendererRecycler = DisplayObjectRecycler.withClass( DisciplineListItemRendererRecycler, DisciplineListItemRendererRecycler.updateItem, DisciplineListItemRendererRecycler.resetItem );
+		//var itemRendererRecycler = DisplayObjectRecycler.withClass( DisciplineListItemRendererRecycler, DisciplineListItemRendererRecycler.updateItem, DisciplineListItemRendererRecycler.resetItem );
 
 
-// TODO: USE SCROLLCONTAINERS
-		_listDisciplineAvailable = new ListView();
-		_listDisciplineAvailable.height = 200;
-		_listDisciplineAvailable.itemRendererRecycler = itemRendererRecycler;
-		_acDisciplineAvailable = new ArrayCollection<Discipline>();
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.ANIMALISM));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.ANIMALISM_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.AUSPEX));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.AUSPEX_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.CELERITY));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.CELERITY_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.DOMINATE));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.DOMINATE_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.FORTITUDE));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.FORTITUDE_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.OBFUSCATE));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.OBFUSCATE_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.POTENCE));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.POTENCE_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.PRESENCE));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.PRESENCE_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.PROTEAN));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.PROTEAN_SUP));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.THAUMATURGY));
-		_acDisciplineAvailable.add( new Discipline(DisciplineName.THAUMATURGY_SUP));
-		_listDisciplineAvailable.dataProvider = _acDisciplineAvailable;
-		_listDisciplineAvailable.addEventListener( Event.CHANGE, _listChangeHandler);
+		_scAvailableDisciplineList = new ScrollContainer();
+		_scAvailableDisciplineList.layout = new VerticalLayout();
+		_scAvailableDisciplineList.width = 170;
+		_scAvailableDisciplineList.height = 200;
+		_displayAvailableDisciplineList();
+		lg4.addChild( _scAvailableDisciplineList);
 
 
 
-		lg4.addChild( _listDisciplineAvailable);
+		_scSelectedDisciplineList = new ScrollContainer();
+		_scSelectedDisciplineList.layout = new VerticalLayout();
+		_scSelectedDisciplineList.width = 170;
+		_scSelectedDisciplineList.height = 200;
+		_displaySelectedDisciplineList();
+		lg4.addChild( _scSelectedDisciplineList);
 
-		_listDisciplineSelected = new ListView();
-		_listDisciplineSelected.height = 200;
-		_listDisciplineSelected.itemRendererRecycler = itemRendererRecycler;
-		_acDisciplineSelected = new ArrayCollection<Discipline>();
-		_listDisciplineSelected.dataProvider = _acDisciplineSelected;
-		_listDisciplineSelected.addEventListener( Event.CHANGE, _listChangeHandler);
 
-        lg4.addChild( _listDisciplineSelected );
 		editCardLayoutGroup.addChild( lg4);
 
-
-
-
-
-
-
-
 	}
+
+	private function _displayAvailableDisciplineList():Void
+	{		
+		for ( i in 0..._scAvailableDisciplineList.numChildren )
+			_scAvailableDisciplineList.removeChildAt(0);
+		var b:Button;
+		var tf = new TextFormat( _mainFontName, 11, 0x000000 );
+		for ( d in _availableDisciplineList )
+		{
+			b = new DisciplineButton( d, 150);
+			b.textFormat = tf;	
+			b.addEventListener( TriggerEvent.TRIGGER, _availableDisciplineClickHandler);
+			_scAvailableDisciplineList.addChild( b );
+		}
+	}
+
+	private function _displaySelectedDisciplineList():Void
+	{		
+		for ( i in 0..._scSelectedDisciplineList.numChildren )
+			_scSelectedDisciplineList.removeChildAt(0);
+		var b:Button;
+		var tf = new TextFormat( _mainFontName, 11, 0x000000 );
+		for ( d in _selectedDisciplineList )
+		{
+			b = new DisciplineButton( d, 150);
+			b.textFormat = tf;	
+			b.addEventListener( TriggerEvent.TRIGGER, _selectedDisciplineClickHandler);
+			_scSelectedDisciplineList.addChild( b );
+		}
+	}
+
+
+
 	
 	function _txtChangeHandler(e:Event):Void 
 	{
@@ -245,34 +293,44 @@ class Main extends Application
 		_card.crypteCapacity = _txtCardCapacity.text;
 	}
 	
+	function _txtInputChangeHandler(e:TextEvent):Void 
+	{
+		if ( e.target == _txtCardCapacity )
+		{		
+			var t = cast(e.target, TextInput);
+			trace( "INPUT change", t.text);	
+			/*if (t.text.length > 2)
+				t.text = t.text.substr( 0,2);
+				t.invalidate();
+				t.update();*/
+		}
+		/*
+		_card.crypteName = _txtCardName.text;
+		_card.crypteCapacity = _txtCardCapacity.text;*/
+	}
+	
 	function _cbClanChangeHandler(e:Event):Void 
 	{
 		_card.clan = _cbClan.selectedItem;
 	}
 	
-	function _listChangeHandler(e:Event):Void 
+	function _availableDisciplineClickHandler(e:TriggerEvent):Void 
 	{
-
-
-		trace( cast(e.target, ListView).selectedIndex);
-		trace( _listDisciplineAvailable.selectedIndex);
-		
-		var d:Discipline = null;
-		var ac:ArrayCollection<Discipline> = null;
-		if ( e.target == _listDisciplineAvailable )
-		{
-			d = _listDisciplineAvailable.dataProvider.get(_listDisciplineAvailable.selectedIndex);
-		trace( d);
-			_acDisciplineAvailable.remove( d );
-			_acDisciplineSelected.add(d);
-			_listDisciplineAvailable.dataProvider = _acDisciplineAvailable;
-			_listDisciplineSelected.dataProvider = _acDisciplineSelected;
-		}/*
-		if ( e.target == _listDisciplineSelected )
-		{
-			d = _listDisciplineSelected.dataProvider.get(_listDisciplineSelected.selectedIndex);
-			_listDisciplineSelected.dataProvider.remove( d );
-			_listDisciplineAvailable.dataProvider.add( d );
-		}*/
+		var bt:DisciplineButton = cast( e.target, DisciplineButton);
+		_availableDisciplineList.remove( bt.discipline);
+		_selectedDisciplineList.add(bt.discipline);
+		_displayAvailableDisciplineList();
+		_displaySelectedDisciplineList();
+		_card.disciplineList = _selectedDisciplineList;
+	}
+	
+	function _selectedDisciplineClickHandler(e:TriggerEvent):Void 
+	{
+		var bt:DisciplineButton = cast( e.target, DisciplineButton);
+		_availableDisciplineList.add( bt.discipline);
+		_selectedDisciplineList.remove(bt.discipline);
+		_displayAvailableDisciplineList();
+		_displaySelectedDisciplineList();
+		_card.disciplineList = _selectedDisciplineList;
 	}
 }
