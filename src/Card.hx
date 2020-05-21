@@ -13,6 +13,7 @@ import openfl.text.TextFieldAutoSize;
 import openfl.text.AntiAliasType;
 import openfl.utils.Assets;
 import openfl.display.Bitmap;
+import openfl.display.BitmapData;
 import openfl.display.Sprite;
 import entities.Clan;
 import entities.Discipline;
@@ -23,6 +24,7 @@ class Card extends Sprite
 	private var _textFormat:TextFormat;
 	private var _capacityFormat:TextFormat;
     private var _background:Bitmap;
+    private var _illustration:Bitmap;
     private var _txtName:Label;
     private var t:TextField;
     private var _txtCardText:TextField;
@@ -58,6 +60,13 @@ class Card extends Sprite
         return disciplineList;
     }
 
+    public var illustration(default, set):BitmapData;
+    function set_illustration(value:BitmapData){
+        illustration = value;
+        _update();
+        return illustration;
+    }
+
     public function new() {
         super();
 
@@ -68,6 +77,10 @@ class Card extends Sprite
         _capacityFormat = new TextFormat( Assets.getFont( "fonts/Quorbl__.TTF").fontName, 47, 0xffffff, null, null, null, null, null, TextFormatAlign.CENTER );
 
         //this.crypteName = "";
+
+        _illustration = new Bitmap();
+        //_background.scaleX = _background.scaleY = 0.5;
+		addChild(_illustration);
 
         _background = new Bitmap();
         //_background.scaleX = _background.scaleY = 0.5;
@@ -108,8 +121,6 @@ class Card extends Sprite
         _disciplineContainer.height = 1040;
         addChild( _disciplineContainer);
 
-
-
         scaleX = scaleY = 0.5;
     }
 
@@ -118,6 +129,12 @@ class Card extends Sprite
     {
         if ( _background.bitmapData != null ) _background.bitmapData.dispose();
         _background.bitmapData = Assets.getBitmapData("images/" + clan.backgroundFileName );
+
+        
+        if ( _illustration.bitmapData != null ) _illustration.bitmapData.dispose();
+        if ( illustration != null ) 
+        _illustration.bitmapData = illustration;
+
         _txtName.text = crypteName;
         _txtCapacity.text = crypteCapacity;
 
