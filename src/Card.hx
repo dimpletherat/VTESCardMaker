@@ -1,6 +1,11 @@
 package;
 
+import feathers.layout.HorizontalAlign;
+import feathers.layout.VerticalLayout;
+import feathers.layout.VerticalAlign;
+import feathers.controls.LayoutGroup;
 import feathers.controls.Label;
+import feathers.data.ArrayCollection;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
@@ -10,6 +15,7 @@ import openfl.utils.Assets;
 import openfl.display.Bitmap;
 import openfl.display.Sprite;
 import entities.Clan;
+import entities.Discipline;
 
 class Card extends Sprite 
 {
@@ -21,6 +27,7 @@ class Card extends Sprite
     private var t:TextField;
     private var _txtCardText:TextField;
     private var _txtCapacity:Label;
+    private var _disciplineContainer:LayoutGroup;
 
 
     public var clan(default, set):Clan ;
@@ -42,6 +49,13 @@ class Card extends Sprite
         crypteCapacity = value;
         _update();
         return crypteCapacity;
+    }
+
+    public var disciplineList(default, set):ArrayCollection<Discipline> = new ArrayCollection<Discipline>();
+    function set_disciplineList(value:ArrayCollection<Discipline>){
+        disciplineList = value;
+        _update();
+        return disciplineList;
     }
 
     public function new() {
@@ -66,7 +80,7 @@ class Card extends Sprite
 		_txtName.width = 600;
 		_txtName.height = 80;
 		_txtName.x= 44;
-        _txtName.y = 46;
+        _txtName.y = 44;
 		_txtName.selectable = false;
         addChild( _txtName );
 
@@ -81,6 +95,21 @@ class Card extends Sprite
         addChild( _txtCapacity );
         
         
+
+        _disciplineContainer = new LayoutGroup();
+        var vl:VerticalLayout = new VerticalLayout();
+        vl.gap = 11;
+        //vl.paddingLeft = 40;
+        vl.paddingBottom = 57;
+        vl.verticalAlign = VerticalAlign.BOTTOM;
+        vl.horizontalAlign = HorizontalAlign.CENTER;
+        _disciplineContainer.layout = vl;
+        _disciplineContainer.width = 155;
+        _disciplineContainer.height = 1040;
+        addChild( _disciplineContainer);
+
+
+
         scaleX = scaleY = 0.5;
     }
 
@@ -91,5 +120,14 @@ class Card extends Sprite
         _background.bitmapData = Assets.getBitmapData("images/" + clan.backgroundFileName );
         _txtName.text = crypteName;
         _txtCapacity.text = crypteCapacity;
+
+        for ( i in 0..._disciplineContainer.numChildren)
+            _disciplineContainer.removeChildAt(0);
+        var dSize:Int;
+        for( d in disciplineList )
+        {
+            dSize = (d.isSuperior) ? 75 : 59;
+            _disciplineContainer.addChild( new DisciplineIcon( d, dSize,dSize));
+        }
     }
 }
