@@ -1,5 +1,6 @@
 package;
 
+import feathers.controls.HSlider;
 import openfl.net.FileFilter;
 import openfl.net.FileReference;
 import openfl.display.Loader;
@@ -54,6 +55,7 @@ class Main extends Application
 	private var _mainFontName:String;
 	private var _mainTextFormat:TextFormat;
 	private var _mainTextFormatBold:TextFormat;
+	private var _sliderIllustrationScale:HSlider;
 
 
 	public function new()
@@ -265,17 +267,26 @@ class Main extends Application
 		bt.addEventListener( TriggerEvent.TRIGGER, _loadIllustrationClickHandler );
 		bt.text = "Load From Disk";
 		lg5.addChild( bt );
-
-
-
 		editCardLayoutGroup.addChild( lg5);
 
+		_sliderIllustrationScale = new HSlider();
+		_sliderIllustrationScale.minimum = 0.2;
+		_sliderIllustrationScale.maximum = 3.0;
+		_sliderIllustrationScale.step = 0.1;
+		_sliderIllustrationScale.value = 1.0;
+		_sliderIllustrationScale.addEventListener( Event.CHANGE, _sliderIllustrationScaleChangeHandler);
+		editCardLayoutGroup.addChild( _sliderIllustrationScale);
+
+	}
+	private function _sliderIllustrationScaleChangeHandler(e:Event):Void 
+	{
+		_card.illustrationScale = _sliderIllustrationScale.value;
 	}
 	private function _loadIllustrationClickHandler(e:TriggerEvent):Void
 	{
 		var fr = new FileReference();
 		fr.addEventListener( Event.SELECT, _selectFileHandler);
-		fr.browse([new FileFilter("Compatible Images", "*.png"), new FileFilter("Compatible Images", "*.jpg")]);
+		fr.browse(/*[new FileFilter("Compatible Images", "*.png"), new FileFilter("Compatible Images", "*.jpg")]*/);
 		//var l:Loader = new Loader();
 		//l.load( File)
 
@@ -284,7 +295,7 @@ class Main extends Application
 	{
 		var fr = cast(e.target, FileReference);
 		var ext:String = fr.name.substr( fr.name.lastIndexOf("."));
-		trace( ext);
+		//trace( ext);
 		if ( ext != ".png" && ext != ".jpg" ) return;
 		fr.addEventListener( Event.COMPLETE, _loadFileHandler );
 		fr.load();
@@ -293,9 +304,8 @@ class Main extends Application
 	{
 		var fr = cast(e.target, FileReference);
 		var bd:BitmapData = BitmapData.fromBytes( fr.data);
-		trace( bd);
+		_sliderIllustrationScale.value = 1.0;
 		_card.illustration = bd;
-		trace( bd );
 	}
 
 	private function _displayAvailableDisciplineList():Void
