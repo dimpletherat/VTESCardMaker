@@ -1,5 +1,6 @@
 package;
 
+import openfl.events.MouseEvent;
 import feathers.layout.HorizontalAlign;
 import feathers.layout.VerticalLayout;
 import feathers.layout.VerticalAlign;
@@ -23,8 +24,10 @@ class Card extends Sprite
 	private var _nameFormat:TextFormat;
 	private var _textFormat:TextFormat;
 	private var _capacityFormat:TextFormat;
+	
     private var _background:Bitmap;
     private var _illustration:Bitmap;
+    private var _illustrationContainer:Sprite;
     private var _txtName:Label;
     private var t:TextField;
     private var _txtCardText:TextField;
@@ -63,8 +66,19 @@ class Card extends Sprite
     public var illustration(default, set):BitmapData;
     function set_illustration(value:BitmapData){
         illustration = value;
+        illustrationScale = 1.0;
+        trace( width, height );
+        _illustrationContainer.x = width * 0.5;
+        _illustrationContainer.y = height * 0.5;
+
         _update();
         return illustration;
+    }
+    public var illustrationScale(default, set):Float;
+    function set_illustrationScale(value:Float){
+        illustrationScale = value;
+        _illustrationContainer.scaleX = _illustrationContainer.scaleY = illustrationScale;
+        return illustrationScale;
     }
 
     public function new() {
@@ -78,12 +92,12 @@ class Card extends Sprite
 
         //this.crypteName = "";
 
+        _illustrationContainer = new Sprite();
+        addChild( _illustrationContainer);
         _illustration = new Bitmap();
-        //_background.scaleX = _background.scaleY = 0.5;
-		addChild(_illustration);
+		_illustrationContainer.addChild(_illustration);
 
         _background = new Bitmap();
-        //_background.scaleX = _background.scaleY = 0.5;
 		addChild(_background);
         
 
@@ -121,19 +135,40 @@ class Card extends Sprite
         _disciplineContainer.height = 1040;
         addChild( _disciplineContainer);
 
+
+        addEventListener( MouseEvent.MOUSE_DOWN, _mouseDownHandler);
         scaleX = scaleY = 0.5;
+        
+    }
+
+    private  function _mouseDownHandler( e:MouseEvent) {
+        stage.addEventListener( MouseEvent.MOUSE_UP, _stageMouseUpHandler );
+        _illustrationContainer.startDrag();
+    }
+
+    private  function _stageMouseUpHandler( e:MouseEvent) {
+        stage.removeEventListener( MouseEvent.MOUSE_UP, _stageMouseUpHandler );
+        _illustrationContainer.stopDrag();
     }
 
 
     private function _update() 
     {
-        if ( _background.bitmapData != null ) _background.bitmapData.dispose();
+        trace( "update");
+        //if ( _background.bitmapData != null ) _background.bitmapData.dispose();
         _background.bitmapData = Assets.getBitmapData("images/" + clan.backgroundFileName );
 
         
-        if ( _illustration.bitmapData != null ) _illustration.bitmapData.dispose();
-        if ( illustration != null ) 
-        _illustration.bitmapData = illustration;
+        //if ( _illustration.bitmapData != null ) _illustration.bitmapData.dispose();
+        /*removeChild( _illustration );
+        _illustration = new Bitmap( illustration );
+        addChild( _illustration );*/
+        if ( illustration != null )
+        {
+            _illustration.bitmapData = illustration;
+            _illustration.x = -illustration.width/2;
+            _illustration.y = -illustration.height/2;
+        }
 
         _txtName.text = crypteName;
         _txtCapacity.text = crypteCapacity;
