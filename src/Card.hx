@@ -38,28 +38,35 @@ class Card extends Sprite
     public var clan(default, set):Clan ;
     function set_clan(value:Clan){
         clan = value;
-        _update();
+        _updateBackground();
         return clan;
     }
 
     public var crypteName(default, set):String = "";
     function set_crypteName(value:String){
         crypteName = value;
-        _update();
+        _updateName();
         return crypteName;
     }
 
     public var crypteCapacity(default, set):String = "";
     function set_crypteCapacity(value:String){
         crypteCapacity = value;
-        _update();
+        _updateCapacity();
         return crypteCapacity;
+    }
+
+    public var cardText(default, set):String = "";
+    function set_cardText(value:String){
+        cardText = value;
+        _updateCardText();
+        return cardText;
     }
 
     public var disciplineList(default, set):ArrayCollection<Discipline> = new ArrayCollection<Discipline>();
     function set_disciplineList(value:ArrayCollection<Discipline>){
         disciplineList = value;
-        _update();
+        _updateDisciplines();
         return disciplineList;
     }
 
@@ -71,7 +78,7 @@ class Card extends Sprite
         _illustrationContainer.x = width * 0.5;
         _illustrationContainer.y = height * 0.5;
 
-        _update();
+        _updateIllustration();
         return illustration;
     }
     public var illustrationScale(default, set):Float;
@@ -152,28 +159,41 @@ class Card extends Sprite
     }
 
 
-    private function _update() 
+    private function _updateName() 
     {
-        trace( "update");
+        trace( "_updateName");
+        _txtName.text = crypteName;
+    }
+    private function _updateCapacity() 
+    {
+        trace( "_updateCapacity");
+        _txtCapacity.text = crypteCapacity;
+    }
+    private function _updateBackground() 
+    {
+        trace( "_updateBackground");
         //if ( _background.bitmapData != null ) _background.bitmapData.dispose();
         _background.bitmapData = Assets.getBitmapData("images/" + clan.backgroundFileName );
-
-        
-        //if ( _illustration.bitmapData != null ) _illustration.bitmapData.dispose();
-        /*removeChild( _illustration );
-        _illustration = new Bitmap( illustration );
-        addChild( _illustration );*/
+    }
+    private function _updateIllustration() 
+    {
+        trace( "_updateIllustration");
         if ( illustration != null )
         {
             _illustration.bitmapData = illustration;
             _illustration.x = -illustration.width/2;
             _illustration.y = -illustration.height/2;
         }
-
-        _txtName.text = crypteName;
-        _txtCapacity.text = crypteCapacity;
-
-        for ( i in 0..._disciplineContainer.numChildren)
+    }
+    private function _updateCardText() 
+    {
+        trace( "_updateCardText");
+        _txtCardText.text = cardText;
+    }
+    private function _updateDisciplines() 
+    {
+        trace( "_updateDisciplines");
+                for ( i in 0..._disciplineContainer.numChildren)
             _disciplineContainer.removeChildAt(0);
         var dSize:Int;
         for( d in disciplineList )
