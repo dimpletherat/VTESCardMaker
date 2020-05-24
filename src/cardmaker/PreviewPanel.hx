@@ -22,7 +22,7 @@ import openfl.display.Sprite;
 import entities.Clan;
 import entities.Discipline;
 
-class PreviewPanel extends LayoutGroup
+class PreviewPanel extends Sprite
 {
     private var _nameFormat:TextFormat;
 	private var _textFormat:TextFormat;
@@ -207,4 +207,11 @@ class PreviewPanel extends LayoutGroup
         }
     }
 
+
+
+
+    public function update( data:Any ) 
+    {
+        
+    }
 }

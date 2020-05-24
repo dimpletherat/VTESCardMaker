@@ -29,7 +29,7 @@ class CardMaker extends LayoutGroup
 
     private function _editPanelUpdateHandler( e:CardMakerEvent ) 
     {
-        
+        _previewPanel.update( e.data );
     }
 
 }

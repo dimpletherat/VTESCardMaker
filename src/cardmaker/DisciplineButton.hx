@@ -1,4 +1,4 @@
-package;
+package cardmaker;
 
 import feathers.layout.HorizontalAlign;
 import entities.Discipline;

@@ -1,4 +1,4 @@
-package;
+package cardmaker;
 
 import openfl.display.Sprite;
 import openfl.display.DisplayObjectContainer;
