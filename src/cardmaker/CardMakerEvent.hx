@@ -4,7 +4,7 @@ import openfl.events.Event;
 
 class CardMakerEvent extends Event
 {
-
+    public static var UPDATE:String = "CardMakerEvent_update";
     public var data(default, null):Any;
 
 
