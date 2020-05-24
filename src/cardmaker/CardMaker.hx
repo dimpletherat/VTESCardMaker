@@ -8,8 +8,8 @@ import vtes.CardCategory;
 class CardMaker extends LayoutGroup
 {
     
-    private var _cardViewPanel:PreviewPanel;
-    private var _cardEditPanel:EditPanel;
+    private var _previewPanel:PreviewPanel;
+    private var _editPanel:EditPanel;
     
 
     public function new( cardCategory:CardCategory )
@@ -20,9 +20,16 @@ class CardMaker extends LayoutGroup
 		l.gap = 30;	
 		layout = l;
 
-        addChild( new PreviewPanel(cardCategory));
-        addChild( new EditPanel(cardCategory));
+        _previewPanel = new PreviewPanel(cardCategory);
+        addChild( _previewPanel);
+        _editPanel = new EditPanel(cardCategory);
+        _editPanel.addEventListener( CardMakerEvent.UPDATE, _editPanelUpdateHandler );
+        addChild( _editPanel);
     }
 
+    private function _editPanelUpdateHandler( e:CardMakerEvent ) 
+    {
+        
+    }
 
 }
