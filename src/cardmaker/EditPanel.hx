@@ -1,18 +1,15 @@
 package cardmaker;
 
+import vtes.*;
 import openfl.display.BitmapData;
 import openfl.net.FileReference;
 import feathers.events.TriggerEvent;
 import feathers.controls.Button;
-import entities.DisciplineName;
 import openfl.events.TextEvent;
 import openfl.events.Event;
-import entities.ClanName;
-import entities.Clan;
 import feathers.controls.Label;
 import feathers.layout.VerticalAlign;
 import feathers.layout.VerticalLayout;
-import entities.Discipline;
 import feathers.controls.TextInput;
 import feathers.controls.HSlider;
 import feathers.controls.ScrollContainer;
@@ -22,7 +19,6 @@ import openfl.text.TextFormat;
 import feathers.layout.HorizontalLayout;
 import feathers.controls.Panel;
 import feathers.controls.LayoutGroup;
-import vtes.CardCategory;
 
 class EditPanel extends LayoutGroup
 {
@@ -42,7 +38,7 @@ class EditPanel extends LayoutGroup
 	private var _sliderIllustrationScale:HSlider;
     
     
-    public function new( cardCategory:CardCategory )
+    public function new( card:Card )
     {
         super();
         

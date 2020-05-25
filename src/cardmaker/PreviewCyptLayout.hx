@@ -1,5 +1,6 @@
-package;
+package cardmaker;
 
+import vtes.*;
 import openfl.events.MouseEvent;
 import feathers.layout.HorizontalAlign;
 import feathers.layout.VerticalLayout;
@@ -10,30 +11,38 @@ import feathers.data.ArrayCollection;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
-import openfl.text.TextFieldAutoSize;
-import openfl.text.AntiAliasType;
 import openfl.utils.Assets;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
-import entities.Clan;
-import entities.Discipline;
+import openfl.display.DisplayObjectContainer;
 
-class Card extends Sprite 
+class PreviewCyptLayout extends PreviewLayout
 {
-	private var _nameFormat:TextFormat;
+    private var _nameFormat:TextFormat;
 	private var _textFormat:TextFormat;
 	private var _capacityFormat:TextFormat;
 	
-    private var _background:Bitmap;
-    private var _illustration:Bitmap;
-    private var _illustrationContainer:Sprite;
     private var _txtName:Label;
     private var t:TextField;
     private var _txtCardText:TextField;
     private var _txtCapacity:Label;
     private var _disciplineContainer:LayoutGroup;
-
+/*
+    public var types:Array<CardType>;
+    public var cardName:String;
+    public var clan:Clan;
+    public var capacity:Int;
+    public var poolCost:Int;
+    public var bloodCost:Int;
+    public var text:String;
+    public var group:Int;
+    public var extension:Extension;
+    public var advanced:Bool;
+    public var disciplines:Array<Discipline>;
+    public var credits:String;
+    public var copyright:String;
+*/
 
     public var clan(default, set):Clan ;
     function set_clan(value:Clan){
@@ -69,44 +78,16 @@ class Card extends Sprite
         _updateDisciplines();
         return disciplineList;
     }
+    
 
-    public var illustration(default, set):BitmapData;
-    function set_illustration(value:BitmapData){
-        illustration = value;
-        illustrationScale = 1.0;
-        trace( width, height );
-        _illustrationContainer.x = width * 0.5;
-        _illustrationContainer.y = height * 0.5;
-
-        _updateIllustration();
-        return illustration;
-    }
-    public var illustrationScale(default, set):Float;
-    function set_illustrationScale(value:Float){
-        illustrationScale = value;
-        _illustrationContainer.scaleX = _illustrationContainer.scaleY = illustrationScale;
-        return illustrationScale;
-    }
-
-    public function new() {
+    
+    public function new ()
+    {
         super();
+		var nameFormat = new TextFormat( Assets.getFont( "fonts/MatrixExtraBold.ttf").fontName, 48, 0xffffff );
+        var cardTextFormat = new TextFormat( Assets.getFont( "fonts/GIL_____.TTF").fontName, 14 );
+        var capacityFormat = new TextFormat( Assets.getFont( "fonts/Quorbl__.TTF").fontName, 47, 0xffffff, null, null, null, null, null, TextFormatAlign.CENTER );
 
-		//_nameFormat = new TextFormat( Assets.getFont( "fonts/MatrixExtraBold.ttf").fontName, 24, 0xffffff );
-		_nameFormat = new TextFormat( Assets.getFont( "fonts/MatrixExtraBold.ttf").fontName, 48, 0xffffff );
-        _textFormat = new TextFormat( Assets.getFont( "fonts/GIL_____.TTF").fontName, 14 );
-        //_capacityFormat = new TextFormat( Assets.getFont( "fonts/Quorbl__.TTF").fontName, 24, 0xffffff, null, null, null, null, null, TextFormatAlign.CENTER );
-        _capacityFormat = new TextFormat( Assets.getFont( "fonts/Quorbl__.TTF").fontName, 47, 0xffffff, null, null, null, null, null, TextFormatAlign.CENTER );
-
-        //this.crypteName = "";
-
-        _illustrationContainer = new Sprite();
-        addChild( _illustrationContainer);
-        _illustration = new Bitmap();
-		_illustrationContainer.addChild(_illustration);
-
-        _background = new Bitmap();
-		addChild(_background);
-        
 
         _txtName = new Label();
 		_txtName.embedFonts = true;
@@ -143,20 +124,14 @@ class Card extends Sprite
         addChild( _disciplineContainer);
 
 
-        addEventListener( MouseEvent.MOUSE_DOWN, _mouseDownHandler);
-        scaleX = scaleY = 0.5;
+    }   
+
+    override public function update( card:Card ):Void
+    {
         
-    }
+    } 
 
-    private  function _mouseDownHandler( e:MouseEvent) {
-        stage.addEventListener( MouseEvent.MOUSE_UP, _stageMouseUpHandler );
-        _illustrationContainer.startDrag();
-    }
 
-    private  function _stageMouseUpHandler( e:MouseEvent) {
-        stage.removeEventListener( MouseEvent.MOUSE_UP, _stageMouseUpHandler );
-        _illustrationContainer.stopDrag();
-    }
 
 
     private function _updateName() 
@@ -168,22 +143,6 @@ class Card extends Sprite
     {
         trace( "_updateCapacity");
         _txtCapacity.text = crypteCapacity;
-    }
-    private function _updateBackground() 
-    {
-        trace( "_updateBackground");
-        //if ( _background.bitmapData != null ) _background.bitmapData.dispose();
-        _background.bitmapData = Assets.getBitmapData("images/" + clan.backgroundFileName );
-    }
-    private function _updateIllustration() 
-    {
-        trace( "_updateIllustration");
-        if ( illustration != null )
-        {
-            _illustration.bitmapData = illustration;
-            _illustration.x = -illustration.width/2;
-            _illustration.y = -illustration.height/2;
-        }
     }
     private function _updateCardText() 
     {
@@ -202,4 +161,20 @@ class Card extends Sprite
             _disciplineContainer.addChild( new DisciplineIcon( d, dSize,dSize));
         }
     }
+    /*
+    public var types:Array<CardType>;
+    public var name:String;
+    public var clan:Clan;
+    public var capacity:Int;
+    public var poolCost:Int;
+    public var bloodCost:Int;
+    public var text:String;
+    public var group:Int;
+    public var extension:Extension;
+    public var advanced:Bool;
+    public var disciplines:Array<Discipline>;
+    public var credits:String;
+    public var copyright:String;
+*/
+ 
 }

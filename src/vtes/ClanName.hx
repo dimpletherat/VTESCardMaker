@@ -1,4 +1,4 @@
-package entities;
+package vtes;
 
 enum ClanName {
     BRUJAH;

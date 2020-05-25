@@ -1,7 +1,7 @@
 package cardmaker;
 
 import feathers.layout.HorizontalAlign;
-import entities.Discipline;
+import vtes.Discipline;
 import feathers.controls.Button;
 
 

@@ -10,4 +10,5 @@ enum CardType
     ACTION_MODIFIER;
     COMBAT;
     MASTER;
+    POLITICAL;
 }

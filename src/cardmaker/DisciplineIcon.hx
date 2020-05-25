@@ -4,7 +4,7 @@ package cardmaker;
 import openfl.events.Event;
 import format.SVG;
 import openfl.Assets;
-import entities.Discipline;
+import vtes.Discipline;
 import openfl.display.Sprite;
 
 

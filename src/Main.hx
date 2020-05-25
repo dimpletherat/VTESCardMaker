@@ -1,6 +1,7 @@
 package;
 
 import vtes.CardCategory;
+import vtes.Card;
 import cardmaker.CardMaker;
 import openfl.display3D.Context3DProgramFormat;
 import cardmaker.EditPanel;
@@ -42,7 +43,6 @@ import feathers.controls.ComboBox;
 import feathers.controls.ListView;
 import feathers.layout.VerticalListLayout;
 import feathers.data.ArrayCollection;
-import entities.*;
 
 class Main extends Application
 {
@@ -59,7 +59,9 @@ class Main extends Application
 		l.paddingBottom = 20;		
 		layout = l;
 
-		addChild( new CardMaker(CardCategory.CRYPT));
+		var c:vtes.Card = new vtes.Card(CardCategory.CRYPT);
+
+		addChild( new CardMaker( c ));
 
 		addEventListener( Event.ADDED_TO_STAGE, _addedToStageHandler);
 	}
