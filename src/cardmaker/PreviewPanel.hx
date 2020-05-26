@@ -51,19 +51,14 @@ class PreviewPanel extends Sprite
 
     private  function _mouseDownHandler( e:MouseEvent) 
     {
-        if ( _layout.illustration != null )
-        {
-            stage.addEventListener( MouseEvent.MOUSE_UP, _stageMouseUpHandler );
-            _layout.startDragIllustration();
-            //_illustrationContainer.startDrag();
-        }
+        stage.addEventListener( MouseEvent.MOUSE_UP, _stageMouseUpHandler );
+        _layout.startDragIllustration();
     }
 
     private  function _stageMouseUpHandler( e:MouseEvent) 
     {
         _layout.stopDragIllustration();
         stage.removeEventListener( MouseEvent.MOUSE_UP, _stageMouseUpHandler );
-        //_illustrationContainer.stopDrag();
     }
 
 

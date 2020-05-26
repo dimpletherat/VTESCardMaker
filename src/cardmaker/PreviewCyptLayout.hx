@@ -128,7 +128,7 @@ class PreviewCyptLayout extends PreviewLayout
 
     override public function update( card:Card ):Void
     {
-        
+        super.update( card );
     } 
 
 
@@ -157,7 +157,7 @@ class PreviewCyptLayout extends PreviewLayout
         var dSize:Int;
         for( d in disciplineList )
         {
-            dSize = (d.isSuperior) ? 75 : 59;
+            dSize = (d.level == SUPERIOR) ? 75 : 59;
             _disciplineContainer.addChild( new DisciplineIcon( d, dSize,dSize));
         }
     }

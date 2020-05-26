@@ -1,5 +1,6 @@
 package vtes;
 
+import openfl.display.BitmapData;
 import openfl.geom.Point;
 
 
@@ -19,7 +20,7 @@ class Card
     public var disciplines:Array<Discipline>;
     public var credits:String;
     public var copyright:String;
-    public var illustration:String;
+    public var illustration:BitmapData;
     public var illustrationScale:Float;
     public var illustrationPosition:Point;
 
@@ -27,19 +28,36 @@ class Card
     {
         this.category = category;
 
-        // TODO 
-        /*
         if(sourceArray != null)
         {
+            // TODO fill datas
+            /*
             name = sourceArray[1];
             
             clan = sourceArray[4];
-            capacity = sourceArray[7];
+            capacity = sourceArray[7];*/
+        }else {
+            types = new Array<CardType>();
+            name = "";
+            clan = null;
+            capacity = 1;
+            poolCost = 0;
+            bloodCost = 0;
+            text = "";
+            group = 1;
+            extension = null;
+            advanced = false;
+            disciplines = new Array<Discipline>();
+            credits = "";
+            copyright = "";
+            illustration = null;
+            illustrationScale = 1.0;
+            illustrationPosition = new Point(0,0);
         }
-        */
-    }
 
+    }
+/*
     public function toString():String {
         return "[CARD] " + name ;
-    }
+    }*/
 }

@@ -21,7 +21,12 @@ class CardMaker extends LayoutGroup
 		l.gap = 30;	
 		layout = l;
         
+        // TMP
         _card = new Card( CardCategory.CRYPT );
+
+        // REAL
+        //_card = card;
+
         _previewPanel = new PreviewPanel(_card);
         addChild( _previewPanel);
         _editPanel = new EditPanel(_card);

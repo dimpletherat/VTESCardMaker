@@ -2,23 +2,13 @@ package vtes;
 
 enum DisciplineName {
     PROTEAN;
-    PROTEAN_SUP;
     THAUMATURGY;
-    THAUMATURGY_SUP;
     FORTITUDE;
-    FORTITUDE_SUP;
     AUSPEX;
-    AUSPEX_SUP;
     OBFUSCATE;
-    OBFUSCATE_SUP;
     CELERITY;
-    CELERITY_SUP;
     POTENCE;
-    POTENCE_SUP;
     DOMINATE;
-    DOMINATE_SUP;
     PRESENCE;
-    PRESENCE_SUP;
     ANIMALISM;
-    ANIMALISM_SUP;
 }

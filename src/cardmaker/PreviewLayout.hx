@@ -1,5 +1,6 @@
 package cardmaker;
 
+import openfl.display.Shape;
 import openfl.geom.Point;
 import vtes.*;
 import openfl.events.MouseEvent;
@@ -23,15 +24,20 @@ import openfl.display.DisplayObjectContainer;
 
 class PreviewLayout extends DisplayObjectContainer
 {	
-    private var _background:Bitmap;
+    private var _CARD_WIDTH(default,never):Int =  748;
+    private var _CARD_HEIGHT(default,never):Int =  1038;
+
+
+    private var _background:Shape;
+    private var _cardBackground:Bitmap;
     private var _illustration:Bitmap;
     private var _illustrationContainer:Sprite;
-
+/*
     public var illustration(default, set):BitmapData;
     function set_illustration(value:BitmapData){
         illustration = value;
         illustrationScale = 1.0;
-        illustrationPosition = new Point( width * 0.5, height * 0.5);
+        illustrationPosition = new Point( _CARD_WIDTH * 0.5, _CARD_HEIGHT * 0.5);
         _updateIllustration();
         return illustration;
     }
@@ -49,34 +55,57 @@ class PreviewLayout extends DisplayObjectContainer
         _illustrationContainer.x = illustrationPosition.x;
         _illustrationContainer.y = illustrationPosition.y;
         return illustrationPosition;
-    }
+    }*/
     
     public function new ()
     {
         super();
+
+        _background = new Shape();
+        _background.graphics.beginFill( 0xDBDBDB );
+        _background.graphics.drawRoundRect( 0,0,_CARD_WIDTH, _CARD_HEIGHT, 56,56);
+        _background.graphics.endFill();
+        addChild( _background );
 
         _illustrationContainer = new Sprite();
         addChild( _illustrationContainer);
         _illustration = new Bitmap();
 		_illustrationContainer.addChild(_illustration);
 
-        _background = new Bitmap();
-		addChild(_background);
+        _cardBackground = new Bitmap();
+		addChild(_cardBackground);
     }   
 
     public function update( card:Card ):Void
     {
-        if ( illustration != card.illustration )
+        trace( _illustration.bitmapData );
+
+        trace( card );
+        trace( card.illustration );
+        
+        if ( _illustration.bitmapData != card.illustration )
         {
-            illustration = card.illustration;
-            illustrationScale = card.illustrationScale;
-            illustrationPosition = card.illustrationPosition;
+            _illustration.bitmapData = card.illustration;
+            _illustration.x = -_illustration.width/2;
+            _illustration.y = -_illustration.height/2;
+
+            card.illustrationScale = 1.0;
+            card.illustrationPosition = new Point(_CARD_WIDTH * 0.5, _CARD_HEIGHT * 0.5);
+            _illustrationContainer.x = card.illustrationPosition.x;
+            _illustrationContainer.y = card.illustrationPosition.y;
         }
-        //TODO
+        trace( card.illustration );
+        _illustrationContainer.scaleX = _illustrationContainer.scaleY = card.illustrationScale;
+
+        if ( _cardBackground.bitmapData != null ) _cardBackground.bitmapData.dispose();
+        _cardBackground.bitmapData = Assets.getBitmapData("images/" + card.clan.backgroundFileName );
     } 
     public function startDragIllustration():Void
     {
-        _illustrationContainer.startDrag();
+        if ( _illustration.bitmapData != null )
+        {
+            _illustrationContainer.startDrag();
+        }
     }
     public function stopDragIllustration():Void
     {
@@ -86,18 +115,5 @@ class PreviewLayout extends DisplayObjectContainer
     private function _updateBackground() 
     {
         trace( "_updateBackground");
-        ////if ( _background.bitmapData != null ) _background.bitmapData.dispose();
-        //_background.bitmapData = Assets.getBitmapData("images/" + clan.backgroundFileName );
     }
-    private function _updateIllustration() 
-    {
-        trace( "_updateIllustration");
-        if ( illustration != null )
-        {
-            _illustration.bitmapData = illustration;
-            _illustration.x = -illustration.width/2;
-            _illustration.y = -illustration.height/2;
-        }
-    }
-
 }
