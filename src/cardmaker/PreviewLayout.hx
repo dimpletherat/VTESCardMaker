@@ -68,6 +68,7 @@ class PreviewLayout extends DisplayObjectContainer
         addChild( _background );
 
         _illustrationContainer = new Sprite();
+        _illustrationContainer.mask = _background;
         addChild( _illustrationContainer);
         _illustration = new Bitmap();
 		_illustrationContainer.addChild(_illustration);
@@ -78,11 +79,12 @@ class PreviewLayout extends DisplayObjectContainer
 
     public function update( card:Card ):Void
     {
+        /*
         trace( _illustration.bitmapData );
 
         trace( card );
         trace( card.illustration );
-        
+        */
         if ( _illustration.bitmapData != card.illustration )
         {
             _illustration.bitmapData = card.illustration;
@@ -94,7 +96,7 @@ class PreviewLayout extends DisplayObjectContainer
             _illustrationContainer.x = card.illustrationPosition.x;
             _illustrationContainer.y = card.illustrationPosition.y;
         }
-        trace( card.illustration );
+        //trace( card.illustration );
         _illustrationContainer.scaleX = _illustrationContainer.scaleY = card.illustrationScale;
 
         if ( _cardBackground.bitmapData != null ) _cardBackground.bitmapData.dispose();

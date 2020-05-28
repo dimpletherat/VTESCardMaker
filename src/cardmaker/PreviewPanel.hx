@@ -43,7 +43,7 @@ class PreviewPanel extends Sprite
 
 
         addEventListener( MouseEvent.MOUSE_DOWN, _mouseDownHandler);
-        //scaleX = scaleY = 0.5;
+        scaleX = scaleY = 0.5;
     }
 
     

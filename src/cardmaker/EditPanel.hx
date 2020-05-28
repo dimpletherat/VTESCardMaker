@@ -430,6 +430,7 @@ class EditPanel extends LayoutGroup
 					_availableDisciplineList.remove(o);
 				}
 			}
+			to.push( d );
 		}
 		if ( to == _availableDisciplineList)
 		{

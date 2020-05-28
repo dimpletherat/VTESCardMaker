@@ -19,12 +19,7 @@ import openfl.display.DisplayObjectContainer;
 
 class PreviewCyptLayout extends PreviewLayout
 {
-    private var _nameFormat:TextFormat;
-	private var _textFormat:TextFormat;
-	private var _capacityFormat:TextFormat;
-	
     private var _txtName:Label;
-    private var t:TextField;
     private var _txtCardText:TextField;
     private var _txtCapacity:Label;
     private var _disciplineContainer:LayoutGroup;
@@ -71,14 +66,14 @@ class PreviewCyptLayout extends PreviewLayout
         _updateCardText();
         return cardText;
     }
-
+/*
     public var disciplineList(default, set):ArrayCollection<Discipline> = new ArrayCollection<Discipline>();
     function set_disciplineList(value:ArrayCollection<Discipline>){
         disciplineList = value;
         _updateDisciplines();
         return disciplineList;
     }
-    
+    */
 
     
     public function new ()
@@ -91,7 +86,7 @@ class PreviewCyptLayout extends PreviewLayout
 
         _txtName = new Label();
 		_txtName.embedFonts = true;
-		_txtName.textFormat = _nameFormat;
+		_txtName.textFormat = nameFormat;
 		_txtName.width = 600;
 		_txtName.height = 80;
 		_txtName.x= 44;
@@ -101,7 +96,7 @@ class PreviewCyptLayout extends PreviewLayout
 
         _txtCapacity = new Label();
 		_txtCapacity.embedFonts = true;
-		_txtCapacity.textFormat = _capacityFormat;
+		_txtCapacity.textFormat = capacityFormat;
 		_txtCapacity.width = 80 ;
 		_txtCapacity.height = 60;
 		_txtCapacity.x= 630;
@@ -129,6 +124,10 @@ class PreviewCyptLayout extends PreviewLayout
     override public function update( card:Card ):Void
     {
         super.update( card );
+
+        _txtName.text = card.name;
+        _txtCapacity.text = Std.string(card.capacity);
+        _updateDisciplines( card.disciplines);
     } 
 
 
@@ -149,10 +148,10 @@ class PreviewCyptLayout extends PreviewLayout
         trace( "_updateCardText");
         _txtCardText.text = cardText;
     }
-    private function _updateDisciplines() 
+    private function _updateDisciplines(disciplineList:Array<Discipline>) 
     {
         trace( "_updateDisciplines");
-                for ( i in 0..._disciplineContainer.numChildren)
+        while( _disciplineContainer.numChildren > 0)
             _disciplineContainer.removeChildAt(0);
         var dSize:Int;
         for( d in disciplineList )
