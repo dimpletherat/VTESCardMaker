@@ -1,5 +1,6 @@
 package cardmaker;
 
+import core.Fonts;
 import feathers.controls.Button;
 import feathers.controls.ComboBox;
 import feathers.controls.HSlider;
@@ -53,7 +54,7 @@ class EditPanel extends LayoutGroup
 
         
 
-		_mainFontName = "_sans";
+		_mainFontName = Fonts.CAMBRIA_I;
 		_mainTextFormat = new TextFormat( _mainFontName, 16, 0x000000, false );
 		_mainTextFormatBold = new TextFormat( _mainFontName, 16, 0x660000, true );
 

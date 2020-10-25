@@ -1,5 +1,6 @@
 package cardmaker;
 
+import core.Fonts;
 import vtes.*;
 import openfl.events.MouseEvent;
 import feathers.layout.HorizontalAlign;
@@ -79,9 +80,12 @@ class PreviewCyptLayout extends PreviewLayout
     public function new ()
     {
         super();
-		var nameFormat = new TextFormat( Assets.getFont( "fonts/MatrixExtraBold.ttf").fontName, 48, 0xffffff );
+		/*var nameFormat = new TextFormat( Assets.getFont( "fonts/MatrixExtraBold.ttf").fontName, 48, 0xffffff );
         var cardTextFormat = new TextFormat( Assets.getFont( "fonts/GIL_____.TTF").fontName, 14 );
-        var capacityFormat = new TextFormat( Assets.getFont( "fonts/Quorbl__.TTF").fontName, 47, 0xffffff, null, null, null, null, null, TextFormatAlign.CENTER );
+        var capacityFormat = new TextFormat( Assets.getFont( "fonts/Quorbl__.TTF").fontName, 47, 0xffffff, null, null, null, null, null, TextFormatAlign.CENTER );*/
+		var nameFormat = new TextFormat( Fonts.MATRIX_B, 48, 0xffffff );
+        var cardTextFormat = new TextFormat( Fonts.GILL_SANS, 14 );
+        var capacityFormat = new TextFormat( Fonts.QUORUM, 47, 0xffffff, null, null, null, null, null, TextFormatAlign.CENTER );
 
 
         _txtName = new Label();

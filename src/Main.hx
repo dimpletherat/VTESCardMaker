@@ -1,5 +1,9 @@
 package;
 
+import openfl.display.Stage;
+import openfl.display.StageDisplayState;
+import openfl.display.StageScaleMode;
+import core.Fonts;
 import vtes.CardCategory;
 import vtes.Card;
 import cardmaker.CardMaker;
@@ -51,7 +55,12 @@ class Main extends Application
 
 	public function new()
 	{
+		//stage.displayState = StageDisplayState.FULL_SCREEN;
+		stage.scaleMode = StageScaleMode.NO_SCALE;
+
 		super();
+		Fonts.init();
+
 		var l = new HorizontalLayout();
 		l.paddingLeft = 20;
 		l.paddingTop = 20;
@@ -64,6 +73,7 @@ class Main extends Application
 		addChild( new CardMaker( c ));
 
 		addEventListener( Event.ADDED_TO_STAGE, _addedToStageHandler);
+		addEventListener( Event.RESIZE, _resizeHandler);
 	}
 
 
@@ -74,5 +84,11 @@ class Main extends Application
 		_card.clan = new Clan( ClanName.BRUJAH);
 		addChild( _card);
 		*/
+	}
+
+
+	private function _resizeHandler( e:Event ):Void
+	{
+		trace( stage.stageWidth, stage.stageHeight);
 	}
 }

@@ -2,8 +2,8 @@ package cardmaker;
 
 import vtes.*;
 import feathers.layout.HorizontalLayout;
-import feathers.controls.Panel;
 import feathers.controls.LayoutGroup;
+
 
 class CardMaker extends LayoutGroup
 {
