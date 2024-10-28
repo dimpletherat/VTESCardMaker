@@ -1,11 +1,13 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
+
+import com.nbigot.vtescardmaker.vtes.EDisciplineName;
 
 class Discipline {
     
-    public var name(default,null):DisciplineName;
+    public var name(default,null):EDisciplineName;
     public var label(default,null):String;
     public var code(default,null):String;
-    public var level(default,null):DisciplineLevel;
+    public var level(default,null):EDisciplineLevel;
     public var iconFileName(get,null):String;
     public function get_iconFileName():String
     {
@@ -15,41 +17,41 @@ class Discipline {
         return iconFileName;
     }
 
-    public function new( name:DisciplineName, level:DisciplineLevel = SUPERIOR )
+    public function new( name:EDisciplineName, level:EDisciplineLevel = SUPERIOR )
     {
         this.name = name;
         this.level = level;
 
         switch (name)
         {
-            case DisciplineName.ANIMALISM:
+            case EDisciplineName.ANIMALISM:
                 label = "Animalism";
                 code = "ANI";
-            case DisciplineName.AUSPEX:
+            case EDisciplineName.AUSPEX:
                 label = "Auspex";
                 code = "AUS";
-            case DisciplineName.CELERITY:
+            case EDisciplineName.CELERITY:
                 label = "Celerity";
                 code = "CEL";
-            case DisciplineName.DOMINATE:
+            case EDisciplineName.DOMINATE:
                 label = "Dominate";
                 code = "DOM";
-            case DisciplineName.FORTITUDE:
+            case EDisciplineName.FORTITUDE:
                 label = "Fortitude";
                 code = "FOR";
-            case DisciplineName.OBFUSCATE:
+            case EDisciplineName.OBFUSCATE:
                 label = "Obfuscate";
                 code = "OBF";
-            case DisciplineName.POTENCE:
+            case EDisciplineName.POTENCE:
                 label = "Potence";
                 code = "POT";
-            case DisciplineName.PRESENCE:
+            case EDisciplineName.PRESENCE:
                 label = "Presence";
                 code = "PRE";
-            case DisciplineName.PROTEAN:
+            case EDisciplineName.PROTEAN:
                 label = "Protean";
                 code = "PRO";
-            case DisciplineName.THAUMATURGY:
+            case EDisciplineName.THAUMATURGY:
                 label = "Thaumaturgy";
                 code = "THA";
         }

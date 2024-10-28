@@ -1,6 +1,6 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
 
-enum ClanName {
+enum EClanName {
     BRUJAH;
     GANGREL;
     MALKAVIAN;

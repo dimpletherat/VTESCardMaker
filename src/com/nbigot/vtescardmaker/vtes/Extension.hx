@@ -1,37 +1,37 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
 
 
 class Extension {
     
-    public var name(default,null):ExtensionName;
+    public var name(default,null):EExtensionName;
     public var label(default,null):String;
     public var labelMin(default,null):String;
     public var iconFileName(default,null):String;
 
 
 
-    public function new( name:ExtensionName )
+    public function new( name:EExtensionName )
     {
         this.name = name;
         switch (name)
         {
-            case ExtensionName.JYHAD:
+            case EExtensionName.JYHAD:
                 label = "Jyhad";
                 labelMin = "J";
                 iconFileName = "";
-            case ExtensionName.VTES:
+            case EExtensionName.VTES:
                 label = "V:TES";
                 labelMin = "V";
                 iconFileName = "";
-            case ExtensionName.SABBAT:
+            case EExtensionName.SABBAT:
                 label = "Sabbat";
                 labelMin = "S";
                 iconFileName = "";
-            case ExtensionName.SABBAT_WARS:
+            case EExtensionName.SABBAT_WARS:
                 label = "Sabbat Wars";
                 labelMin = "SW";
                 iconFileName = "";
-            case ExtensionName.FINAL_NIGHTS:
+            case EExtensionName.FINAL_NIGHTS:
                 label = "Final Nights";
                 labelMin = "FN";
                 iconFileName = "";

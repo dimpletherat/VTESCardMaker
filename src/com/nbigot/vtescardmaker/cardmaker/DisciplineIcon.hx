@@ -1,10 +1,10 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
 
 import openfl.events.Event;
 import format.SVG;
 import openfl.Assets;
-import vtes.Discipline;
+import com.nbigot.vtescardmaker.vtes.Discipline;
 import openfl.display.Sprite;
 
 

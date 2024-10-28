@@ -2,9 +2,9 @@
 <project>
 	
 	<meta title="VTESCardMaker" package="com.nbigot.vtescardmaker" version="1.0.0" company="Sewers Studio" />
-	<app main="Main" path="bin" file="VTESCardMaker" />
+	<app main="com.nbigot.vtescardmaker.Main" path="bin" file="vtes-cardmaker" />
 	
-	<window background="#cccccc" fps="60" />
+	<window background="#868686" fps="60" />
 	<window width="1600" height="1200" unless="mobile" />
 	<window width="0" height="0" if="html5" />
 	<window orientation="portrait" vsync="false" antialiasing="0" if="cpp" />

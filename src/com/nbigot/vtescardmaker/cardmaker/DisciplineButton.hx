@@ -1,7 +1,7 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
 import feathers.layout.HorizontalAlign;
-import vtes.Discipline;
+import com.nbigot.vtescardmaker.vtes.Discipline;
 import feathers.controls.Button;
 
 

@@ -1,6 +1,6 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
-import core.Fonts;
+import com.nbigot.vtescardmaker.core.Fonts;
 import feathers.controls.Button;
 import feathers.controls.ComboBox;
 import feathers.controls.HSlider;
@@ -18,7 +18,7 @@ import openfl.events.Event;
 import openfl.events.TextEvent;
 import openfl.net.FileReference;
 import openfl.text.TextFormat;
-import vtes.*;
+import com.nbigot.vtescardmaker.vtes.*;
 
 class EditPanel extends LayoutGroup
 {
@@ -102,13 +102,13 @@ class EditPanel extends LayoutGroup
         };*/
 
         var dataprovider:ArrayCollection<Clan> = new ArrayCollection<Clan>();
-		dataprovider.add( new Clan(ClanName.BRUJAH));
-		dataprovider.add( new Clan(ClanName.GANGREL));
-		dataprovider.add( new Clan(ClanName.MALKAVIAN));
-		dataprovider.add( new Clan(ClanName.NOSFERATU));
-		dataprovider.add( new Clan(ClanName.TREMERE));
-		dataprovider.add( new Clan(ClanName.TOREADOR));
-		dataprovider.add( new Clan(ClanName.VENTRUE));
+		dataprovider.add( new Clan(EClanName.BRUJAH));
+		dataprovider.add( new Clan(EClanName.GANGREL));
+		dataprovider.add( new Clan(EClanName.MALKAVIAN));
+		dataprovider.add( new Clan(EClanName.NOSFERATU));
+		dataprovider.add( new Clan(EClanName.TREMERE));
+		dataprovider.add( new Clan(EClanName.TOREADOR));
+		dataprovider.add( new Clan(EClanName.VENTRUE));
         _cbClan.dataProvider = dataprovider;    
         _cbClan.itemToText = function(item:Dynamic):String{
             return item.label;
@@ -163,26 +163,26 @@ class EditPanel extends LayoutGroup
 
 
 		_availableDisciplineList = new Array<Discipline>();
-		_availableDisciplineList.push( new Discipline(DisciplineName.ANIMALISM, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.ANIMALISM));
-		_availableDisciplineList.push( new Discipline(DisciplineName.AUSPEX, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.AUSPEX));
-		_availableDisciplineList.push( new Discipline(DisciplineName.CELERITY, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.CELERITY));
-		_availableDisciplineList.push( new Discipline(DisciplineName.DOMINATE, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.DOMINATE));
-		_availableDisciplineList.push( new Discipline(DisciplineName.FORTITUDE, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.FORTITUDE));
-		_availableDisciplineList.push( new Discipline(DisciplineName.OBFUSCATE, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.OBFUSCATE));
-		_availableDisciplineList.push( new Discipline(DisciplineName.POTENCE, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.POTENCE));
-		_availableDisciplineList.push( new Discipline(DisciplineName.PRESENCE, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.PRESENCE));
-		_availableDisciplineList.push( new Discipline(DisciplineName.PROTEAN, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.PROTEAN));
-		_availableDisciplineList.push( new Discipline(DisciplineName.THAUMATURGY, DisciplineLevel.INFERIOR));
-		_availableDisciplineList.push( new Discipline(DisciplineName.THAUMATURGY));	
+		_availableDisciplineList.push( new Discipline(EDisciplineName.ANIMALISM, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.ANIMALISM));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.AUSPEX, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.AUSPEX));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.CELERITY, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.CELERITY));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.DOMINATE, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.DOMINATE));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.FORTITUDE, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.FORTITUDE));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.OBFUSCATE, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.OBFUSCATE));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.POTENCE, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.POTENCE));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.PRESENCE, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.PRESENCE));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.PROTEAN, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.PROTEAN));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.THAUMATURGY, EDisciplineLevel.INFERIOR));
+		_availableDisciplineList.push( new Discipline(EDisciplineName.THAUMATURGY));	
 		_availableDisciplineListSortFunction = function(a:Discipline,b:Discipline):Int
         {
             if ( a.label > b.label ) return 1;
@@ -306,7 +306,7 @@ class EditPanel extends LayoutGroup
 	{
 		var fr = cast(e.target, FileReference);
 		var ext:String = fr.name.substr( fr.name.lastIndexOf("."));
-		//trace( ext);
+		trace( ext);
 		if ( ext != ".png" && ext != ".jpg" ) return;
 		fr.addEventListener( Event.COMPLETE, _loadFileHandler );
 		fr.load();
@@ -314,6 +314,7 @@ class EditPanel extends LayoutGroup
 	private function _loadFileHandler(e:Event):Void
 	{
 		var fr = cast(e.target, FileReference);
+		trace( fr);
 		var bd:BitmapData = BitmapData.fromBytes( fr.data);
 		_card.illustration = bd;
 		_card.illustrationScale = 1.0;

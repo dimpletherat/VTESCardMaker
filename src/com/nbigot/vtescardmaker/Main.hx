@@ -1,14 +1,14 @@
-package;
+package com.nbigot.vtescardmaker;
 
 import openfl.display.Stage;
 import openfl.display.StageDisplayState;
 import openfl.display.StageScaleMode;
-import core.Fonts;
-import vtes.CardCategory;
-import vtes.Card;
-import cardmaker.CardMaker;
+import com.nbigot.vtescardmaker.core.Fonts;
+import com.nbigot.vtescardmaker.vtes.ECardCategory;
+import com.nbigot.vtescardmaker.vtes.Card;
+import com.nbigot.vtescardmaker.cardmaker.CardMaker;
 import openfl.display3D.Context3DProgramFormat;
-import cardmaker.EditPanel;
+import com.nbigot.vtescardmaker.cardmaker.EditPanel;
 import feathers.controls.HSlider;
 import openfl.net.FileFilter;
 import openfl.net.FileReference;
@@ -68,7 +68,7 @@ class Main extends Application
 		l.paddingBottom = 20;		
 		layout = l;
 
-		var c:vtes.Card = new vtes.Card(CardCategory.CRYPT);
+		var c:Card = new Card(ECardCategory.CRYPT);
 
 		addChild( new CardMaker( c ));
 
@@ -81,7 +81,7 @@ class Main extends Application
 	{
 		/*
 		_card = new Card();
-		_card.clan = new Clan( ClanName.BRUJAH);
+		_card.clan = new Clan( EClanName.BRUJAH);
 		addChild( _card);
 		*/
 	}

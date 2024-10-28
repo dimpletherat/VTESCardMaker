@@ -1,8 +1,8 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
 import openfl.display.Shape;
 import openfl.geom.Point;
-import vtes.*;
+import com.nbigot.vtescardmaker.vtes.*;
 import openfl.events.MouseEvent;
 import feathers.layout.HorizontalAlign;
 import feathers.layout.VerticalLayout;
@@ -22,7 +22,7 @@ import openfl.display.BitmapData;
 import openfl.display.Sprite;
 import openfl.display.DisplayObjectContainer;
 
-class PreviewLayout extends DisplayObjectContainer
+class PreviewLayout extends Sprite
 {	
     private var _CARD_WIDTH(default,never):Int =  748;
     private var _CARD_HEIGHT(default,never):Int =  1038;
@@ -59,6 +59,7 @@ class PreviewLayout extends DisplayObjectContainer
     
     public function new ()
     {
+        trace('PreviewLayout');
         super();
 
         _background = new Shape();
@@ -79,12 +80,11 @@ class PreviewLayout extends DisplayObjectContainer
 
     public function update( card:Card ):Void
     {
-        /*
+        
         trace( _illustration.bitmapData );
-
         trace( card );
         trace( card.illustration );
-        */
+        
         if ( _illustration.bitmapData != card.illustration )
         {
             _illustration.bitmapData = card.illustration;
@@ -101,6 +101,7 @@ class PreviewLayout extends DisplayObjectContainer
 
         if ( _cardBackground.bitmapData != null ) _cardBackground.bitmapData.dispose();
         _cardBackground.bitmapData = Assets.getBitmapData("images/" + card.clan.backgroundFileName );
+        trace(card.clan.backgroundFileName, _cardBackground);
     } 
     public function startDragIllustration():Void
     {

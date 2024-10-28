@@ -1,11 +1,11 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
 import openfl.display.Sprite;
 import openfl.display.DisplayObjectContainer;
 import motion.easing.IEasing;
 import openfl.display.DisplayObject;
 import feathers.controls.dataRenderers.ItemRenderer;
-import entities.Discipline;
+import com.nbigot.vtescardmaker.vtes.Discipline;
 import feathers.layout.HorizontalLayout;
 import feathers.data.ListViewItemState;
 import feathers.utils.DisplayObjectRecycler;

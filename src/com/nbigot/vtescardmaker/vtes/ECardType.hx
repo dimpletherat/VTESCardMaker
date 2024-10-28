@@ -1,7 +1,7 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
 
 
-enum CardType 
+enum ECardType 
 {
     VAMPIRE;
     IMBUED;

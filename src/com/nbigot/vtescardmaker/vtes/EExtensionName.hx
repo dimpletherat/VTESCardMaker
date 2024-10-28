@@ -1,7 +1,7 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
 
 
-enum ExtensionName 
+enum EExtensionName 
 {
     JYHAD;
     VTES;

@@ -1,6 +1,6 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
 
-enum DisciplineName {
+enum EDisciplineName {
     PROTEAN;
     THAUMATURGY;
     FORTITUDE;

@@ -1,7 +1,8 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
 
-import vtes.*;
+import openfl.display.Shape;
+import com.nbigot.vtescardmaker.vtes.*;
 import openfl.events.MouseEvent;
 import feathers.layout.HorizontalAlign;
 import feathers.layout.VerticalLayout;
@@ -29,16 +30,16 @@ class PreviewPanel extends Sprite
     public function new( card:Card )
     {
         super();
+
         _card = card;
         switch (_card.category)
         {
-            case CardCategory.CRYPT:
+            case ECardCategory.CRYPT:
                 _layout = new PreviewCyptLayout();
             case LIBRARY:
                 _layout = new PreviewLibraryLayout();
         }
         addChild( _layout);
-
 
 
 

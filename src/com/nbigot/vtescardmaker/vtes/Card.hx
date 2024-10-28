@@ -1,4 +1,4 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
 
 import openfl.display.BitmapData;
 import openfl.geom.Point;
@@ -6,8 +6,8 @@ import openfl.geom.Point;
 
 class Card 
 {
-    public var category:CardCategory;
-    public var types:Array<CardType>;
+    public var category:ECardCategory;
+    public var types:Array<ECardType>;
     public var name:String;
     public var clan:Clan;
     public var capacity:Int;
@@ -24,7 +24,7 @@ class Card
     public var illustrationScale:Float;
     public var illustrationPosition:Point;
 
-    public function new( category:CardCategory, ?sourceArray:Array<String> = null)
+    public function new( category:ECardCategory, ?sourceArray:Array<String> = null)
     {
         this.category = category;
 
@@ -37,7 +37,7 @@ class Card
             clan = sourceArray[4];
             capacity = sourceArray[7];*/
         }else {
-            types = new Array<CardType>();
+            types = new Array<ECardType>();
             name = "";
             clan = null;
             capacity = 1;

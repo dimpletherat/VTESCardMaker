@@ -1,4 +1,4 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
 import openfl.events.Event;
 

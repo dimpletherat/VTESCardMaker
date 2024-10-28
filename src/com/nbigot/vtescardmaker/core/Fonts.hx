@@ -1,7 +1,9 @@
-package core;
+package com.nbigot.vtescardmaker.core;
 
 import openfl.text.Font;
-import openfl.Assets;
+import openfl.utils.Assets; 
+
+
  
 class Fonts {
     public static var OPEN_SANS_I(default, null):String;

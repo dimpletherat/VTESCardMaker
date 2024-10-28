@@ -1,4 +1,4 @@
-package;
+package com.nbigot.vtescardmaker;
 
 import openfl.events.MouseEvent;
 import feathers.layout.HorizontalAlign;

@@ -1,8 +1,8 @@
-package vtes;
+package com.nbigot.vtescardmaker.vtes;
 
 class Clan {
     
-    public var name(default,null):ClanName;
+    public var name(default,null):EClanName;
     public var label(default,null):String;
     public var backgroundFileName(get,null):String;
     function get_backgroundFileName():String
@@ -10,25 +10,25 @@ class Clan {
         return label.toLowerCase() + ".png";
     }
 
-    public function new( name:ClanName )
+    public function new( name:EClanName )
     {
         this.name = name;
         switch (name)
         {
-            case ClanName.BRUJAH:
+            case EClanName.BRUJAH:
                 //label = "Brujah";
                 label = "tmp";
-            case ClanName.GANGREL:
+            case EClanName.GANGREL:
                 label = "Gangrel";
-            case ClanName.MALKAVIAN:
+            case EClanName.MALKAVIAN:
                 label = "Malkavian";
-            case ClanName.NOSFERATU:
+            case EClanName.NOSFERATU:
                 label = "Nosferatu";
-            case ClanName.TREMERE:
+            case EClanName.TREMERE:
                 label = "Tremere";
-            case ClanName.TOREADOR:
+            case EClanName.TOREADOR:
                 label = "Toreador";
-            case ClanName.VENTRUE:
+            case EClanName.VENTRUE:
                 label = "Ventrue";
             case _:
                 label = "Ventrue";

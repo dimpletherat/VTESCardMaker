@@ -1,6 +1,6 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
-import vtes.*;
+import com.nbigot.vtescardmaker.vtes.*;
 import feathers.layout.HorizontalLayout;
 import feathers.controls.LayoutGroup;
 
@@ -22,7 +22,7 @@ class CardMaker extends LayoutGroup
 		layout = l;
         
         // TMP
-        _card = new Card( CardCategory.CRYPT );
+        _card = new Card( ECardCategory.CRYPT );
 
         // REAL
         //_card = card;

@@ -1,7 +1,7 @@
-package cardmaker;
+package com.nbigot.vtescardmaker.cardmaker;
 
-import core.Fonts;
-import vtes.*;
+import com.nbigot.vtescardmaker.core.Fonts;
+import com.nbigot.vtescardmaker.vtes.*;
 import openfl.events.MouseEvent;
 import feathers.layout.HorizontalAlign;
 import feathers.layout.VerticalLayout;
@@ -25,7 +25,7 @@ class PreviewCyptLayout extends PreviewLayout
     private var _txtCapacity:Label;
     private var _disciplineContainer:LayoutGroup;
 /*
-    public var types:Array<CardType>;
+    public var types:Array<ECardType>;
     public var cardName:String;
     public var clan:Clan;
     public var capacity:Int;
@@ -79,6 +79,7 @@ class PreviewCyptLayout extends PreviewLayout
     
     public function new ()
     {
+        trace('PreviewCryptLayout');
         super();
 		/*var nameFormat = new TextFormat( Assets.getFont( "fonts/MatrixExtraBold.ttf").fontName, 48, 0xffffff );
         var cardTextFormat = new TextFormat( Assets.getFont( "fonts/GIL_____.TTF").fontName, 14 );
@@ -165,7 +166,7 @@ class PreviewCyptLayout extends PreviewLayout
         }
     }
     /*
-    public var types:Array<CardType>;
+    public var types:Array<ECardType>;
     public var name:String;
     public var clan:Clan;
     public var capacity:Int;
