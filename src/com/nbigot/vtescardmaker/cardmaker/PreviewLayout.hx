@@ -80,11 +80,11 @@ class PreviewLayout extends Sprite
 
     public function update( card:Card ):Void
     {
-        
+        /*
         trace( _illustration.bitmapData );
         trace( card );
         trace( card.illustration );
-        
+        */
         if ( _illustration.bitmapData != card.illustration )
         {
             _illustration.bitmapData = card.illustration;

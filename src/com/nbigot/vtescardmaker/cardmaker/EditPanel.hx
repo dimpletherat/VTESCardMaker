@@ -315,12 +315,17 @@ class EditPanel extends LayoutGroup
 	{
 		var fr = cast(e.target, FileReference);
 		trace( fr);
-		var bd:BitmapData = BitmapData.fromBytes( fr.data);
+		BitmapData.loadFromBytes( fr.data).onComplete(_loadFromBytesHandler);
+	}
+	private function _loadFromBytesHandler(bd:BitmapData) {
+
+		trace( bd.width,bd.height);
 		_card.illustration = bd;
 		_card.illustrationScale = 1.0;
 		dispatchEvent( new CardMakerEvent(CardMakerEvent.UPDATE) );
 
 		_sliderIllustrationScale.value = 1.0;
+		
 	}
 
 	private function _displayAvailableDisciplineList():Void
