@@ -1,5 +1,6 @@
 package com.nbigot.vtescardmaker;
 
+import haxe.ui.Toolkit;
 import openfl.display.Stage;
 import openfl.display.StageDisplayState;
 import openfl.display.StageScaleMode;
@@ -74,6 +75,8 @@ class Main extends Application
 
 		addEventListener( Event.ADDED_TO_STAGE, _addedToStageHandler);
 		addEventListener( Event.RESIZE, _resizeHandler);
+
+		Toolkit.init();
 	}
 
 

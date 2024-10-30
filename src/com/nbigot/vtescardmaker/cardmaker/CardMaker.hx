@@ -1,5 +1,6 @@
 package com.nbigot.vtescardmaker.cardmaker;
 
+import haxe.ui.components.Button;
 import com.nbigot.vtescardmaker.vtes.*;
 import feathers.layout.HorizontalLayout;
 import feathers.controls.LayoutGroup;
@@ -32,6 +33,14 @@ class CardMaker extends LayoutGroup
         _editPanel = new EditPanel(_card);
         _editPanel.addEventListener( CardMakerEvent.UPDATE, _editPanelUpdateHandler );
         addChild( _editPanel);
+
+        var b=new Button();
+        b.onClick = function (e) {
+            trace(e);
+        };
+        b.width = 100;
+        b.text = "HaxeUI button";
+        addChild(b);
     }
 
     private function _editPanelUpdateHandler( e:CardMakerEvent ) 
