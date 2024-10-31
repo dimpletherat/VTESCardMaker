@@ -16,6 +16,7 @@
 	<haxelib name="feathersui" />
 	<haxelib name="haxeui-core" />
 	<haxelib name="haxeui-openfl" />
+	<haxelib name="haxeui-theme-material" />
     <haxelib name="svg" />
 	
 	<assets path="assets/images" rename="images" />

@@ -76,6 +76,7 @@ class Main extends Application
 		addEventListener( Event.ADDED_TO_STAGE, _addedToStageHandler);
 		addEventListener( Event.RESIZE, _resizeHandler);
 
+        Toolkit.theme = "material";
 		Toolkit.init();
 	}
 
