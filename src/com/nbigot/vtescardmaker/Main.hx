@@ -61,7 +61,7 @@ class Main extends Application
 
 		super();
 		Fonts.init();
-
+		
 		var l = new HorizontalLayout();
 		l.paddingLeft = 20;
 		l.paddingTop = 20;
