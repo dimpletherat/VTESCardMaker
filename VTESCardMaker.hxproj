@@ -26,15 +26,17 @@
     <class path="C:\Users\NBigot\Applications\HaxeToolkit\haxe\lib\haxeui-core\1,7,0" />
     <class path="C:\Users\NBigot\Applications\HaxeToolkit\haxe\lib\svg\1,1,3" />
     <class path="src" />
+    <class path="C:\Users\NBigot\Dev\personnal\haxe-lib\src" />
+    <class path="bin\html5\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="lime=8.2.0&#xA;feathersui=1.3.0&#xA;hxargs=4.0.0&#xA;actuate=1.9.0&#xA;haxeui-openfl=1.7.0&#xA;openfl=9.4.0&#xA;haxeui-theme-material=1.0.0&#xA;haxeui&#xA;haxeui-core=1.7.0&#xA;svg=1.1.3&#xA;tools=8.2.0&#xA;lime-canvas&#xA;howlerjs&#xA;no-compilation&#xA;openfl-html5&#xA;lime-webgl&#xA;lime-dom&#xA;lime-howlerjs&#xA;lime-html5&#xA;openfl-disable-handle-error&#xA;html5&#xA;web&#xA;html" />
+    <option directives="lime=8.2.0&#xA;feathersui=1.3.0&#xA;hxargs=4.0.0&#xA;actuate=1.9.0&#xA;haxeui-openfl=1.7.0&#xA;openfl=9.4.0&#xA;haxeui-theme-material=1.0.0&#xA;haxeui&#xA;haxeui-core=1.7.0&#xA;svg=1.1.3&#xA;lime-threads&#xA;tools=8.2.0&#xA;lime-canvas&#xA;howlerjs&#xA;no-compilation&#xA;openfl-html5&#xA;lime-webgl&#xA;lime-dom&#xA;lime-howlerjs&#xA;lime-html5&#xA;openfl-disable-handle-error&#xA;fdb&#xA;verbose=1&#xA;html5&#xA;web&#xA;html5" />
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />
-    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--remap flash:openfl&#xA;--no-output " />
+    <option additional="--macro lime._internal.macros.DefineMacro.run()&#xA;--macro openfl.utils._internal.ExtraParamsMacro.include()&#xA;--remap flash:openfl&#xA;-debug " />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

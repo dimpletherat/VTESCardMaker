@@ -4,6 +4,7 @@ import haxe.ui.components.Button;
 import com.nbigot.vtescardmaker.vtes.*;
 import feathers.layout.HorizontalLayout;
 import feathers.controls.LayoutGroup;
+import haxe.ui.geom.Point;
 
 
 class CardMaker extends LayoutGroup
@@ -36,7 +37,17 @@ class CardMaker extends LayoutGroup
 
         var b=new Button();
         b.onClick = function (e) {
-            trace(e);
+			var aData:AreaData = new AreaData();
+			aData.id = 0;
+			aData.name = "Test Area";
+			aData.x = 0;
+			aData.y = 0;
+			aData.width = 400;
+			aData.height = 300;
+			
+			
+            var a:Area = new Area(true, aData);
+			addChild(a);
         };
         b.width = 100;
         b.text = "HaxeUI button";

@@ -10,6 +10,7 @@
 	<window orientation="portrait" vsync="false" antialiasing="0" if="cpp" />
 	
 	<source path="src" />
+	<source path="C:\Users\NBigot\Dev\personnal\haxe-lib\src" />	
 	
 	<haxelib name="openfl" />
     <haxelib name="actuate" />
